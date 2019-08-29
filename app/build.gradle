@@ -52,6 +52,10 @@ dependencies {
     implementation "androidx.core:core-ktx:$coreKtxVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
 
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
