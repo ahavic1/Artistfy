@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="ba.ahavic.artistfy.ui.main.HomeViewModel" />
+            type="ba.ahavic.artistfy.ui.main.MainFragmentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

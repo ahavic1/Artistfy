@@ -4,12 +4,15 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import ba.ahavic.artistfy.ui.base.viewmodel.BaseViewModel
+import javax.inject.Inject
 
 abstract class BaseBoundActivity<ViewModelType : BaseViewModel, ViewDataBindingType : ViewDataBinding> :
     BaseActivity<ViewDataBindingType>(),
     BoundView<ViewModelType> {
 
+    @Inject
     protected lateinit var viewModelFactory: ViewModelProvider.Factory
+
     final override lateinit var viewModel: ViewModelType
 
     override fun preInflate() {

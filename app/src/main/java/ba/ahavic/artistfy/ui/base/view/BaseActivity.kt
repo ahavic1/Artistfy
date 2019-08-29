@@ -7,12 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
+import dagger.android.support.DaggerAppCompatActivity
 
 /**
  * Base activity for all activities.
  * [ViewDataBindingType] type parameter is required.
  */
-abstract class BaseActivity<ViewDataBindingType : ViewDataBinding> : AppCompatActivity(),
+abstract class BaseActivity<ViewDataBindingType : ViewDataBinding> : DaggerAppCompatActivity(),
     LifecycleOwner {
 
     /**
@@ -20,7 +21,6 @@ abstract class BaseActivity<ViewDataBindingType : ViewDataBinding> : AppCompatAc
      */
     @get:LayoutRes
     abstract val layoutId: Int
-
 
     protected lateinit var viewDataBinding: ViewDataBindingType
 
