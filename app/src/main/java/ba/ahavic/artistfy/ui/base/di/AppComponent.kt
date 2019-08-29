@@ -1,6 +1,8 @@
 package ba.ahavic.artistfy.ui.base.di
 
 import ba.ahavic.artistfy.App
+import ba.ahavic.artistfy.data.base.di.CacheModule
+import ba.ahavic.artistfy.data.base.di.NetworkModule
 import ba.ahavic.artistfy.ui.base.di.module.ActivityBuilder
 import ba.ahavic.artistfy.ui.base.di.module.AppConfigModule
 import ba.ahavic.artistfy.ui.base.di.module.AppModule
@@ -18,8 +20,11 @@ import javax.inject.Singleton
     AppModule::class,
     ActivityBuilder::class,
     ViewModelFactoryModule::class,
-    AppConfigModule::class
+    AppConfigModule::class,
 
+    // Data
+    CacheModule::class,
+    NetworkModule::class
 ])
 @Singleton
 interface AppComponent : AndroidInjector<App> {

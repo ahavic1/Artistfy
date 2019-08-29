@@ -25,6 +25,9 @@ buildscript {
 
         // Dagger
         daggerVersion = '2.24'
+
+        // Room
+        roomVersion = '2.1.0'
     }
 
     repositories {
