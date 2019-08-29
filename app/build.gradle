@@ -1,3 +1,5 @@
+import java.util.function.BiConsumer
+
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
@@ -17,15 +19,35 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            useProguard true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            debuggable true
+        }
+
+        dev {
+            initWith(debug)
+            for (Map.Entry<String, String> entry : loadConfigIntoMap("dev").entrySet()) {
+                buildConfigField "String", entry.key, "\"${entry.value}\""
+            }
+        }
+    }
+
+    dataBinding {
+        enabled = true
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.core:core-ktx:$coreKtxVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
@@ -37,4 +59,27 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
+
+
+Properties loadConfig(String buildType) {
+    def props = new Properties()
+    def filename = buildType + ".properties"
+    try {
+        file(filename).withInputStream { props.load(it) }
+        return props
+    } catch (FileNotFoundException e) {
+        throw new Exception("Config not found ($filename). Check out config-example.properties file.")
+    }
+}
+
+HashMap<String, String> loadConfigIntoMap(String buildType) {
+    def map = new HashMap<String, String>()
+    loadConfig(buildType).forEach(new BiConsumer<Object, Object>() {
+        @Override
+        void accept(Object key, Object value) {
+            map.put(key, value)
+        }
+    })
+    return map
 }
