@@ -24,8 +24,8 @@ abstract class BaseActivity<ViewDataBindingType : ViewDataBinding> : DaggerAppCo
 
     protected lateinit var viewDataBinding: ViewDataBindingType
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         preInflate()
         if (layoutId != 0) {
             viewDataBinding = DataBindingUtil.setContentView(this, layoutId)

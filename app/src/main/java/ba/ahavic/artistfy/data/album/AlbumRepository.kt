@@ -1,0 +1,55 @@
+package ba.ahavic.artistfy.data.album
+
+import androidx.room.Dao
+import androidx.room.Query
+import ba.ahavic.artistfy.data.artist.Artist
+import ba.ahavic.artistfy.data.base.BaseRepository
+import ba.ahavic.artistfy.data.base.db.BaseDao
+import javax.inject.Inject
+
+
+interface AlbumRepository {
+    suspend fun getAlbums(): List<Album>
+    suspend fun saveAlbum(): Boolean
+    suspend fun deleteAlbum(): Boolean
+}
+
+
+class AlbumRepositoryImpl @Inject constructor(private val albumDao: AlbumDao) : BaseRepository(),
+    AlbumRepository {
+
+    override suspend fun getAlbums(): List<Album> {
+        //return albumDao.getAlbums()
+        val list = arrayListOf<Album>()
+
+        for (i in 1..50) {
+            list.add(Album(
+                "$i",
+                "Klika",
+                "htttps//ademir",
+                Artist(
+                    "${i+1}",
+                    "Ademir Havic",
+                    "https//Ademir"
+                ),
+                listOf()))
+        }
+
+        return list
+    }
+
+    override suspend fun saveAlbum(): Boolean {
+        TODO("not implemented")
+    }
+
+    override suspend fun deleteAlbum(): Boolean {
+        TODO("not implemented")
+    }
+}
+
+@Dao
+interface AlbumDao : BaseDao<Album> {
+
+    @Query("SELECT * FROM album")
+    suspend fun getAlbums(): List<Album>
+}

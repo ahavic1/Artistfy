@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Artistfy</string>
+
+    <string name="albums_no_albums_error">You have no saved albums.</string>
+    <string name="all_data_loading_title">Loading data</string>
+
+
 </resources>

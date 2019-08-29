@@ -7,8 +7,7 @@ import ba.ahavic.artistfy.ui.base.viewmodel.BaseViewModel
 import javax.inject.Inject
 
 abstract class BaseBoundActivity<ViewModelType : BaseViewModel, ViewDataBindingType : ViewDataBinding> :
-    BaseActivity<ViewDataBindingType>(),
-    BoundView<ViewModelType> {
+    BaseActivity<ViewDataBindingType>(), BoundView<ViewModelType> {
 
     @Inject
     protected lateinit var viewModelFactory: ViewModelProvider.Factory

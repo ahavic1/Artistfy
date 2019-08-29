@@ -1,8 +1,8 @@
 package ba.ahavic.artistfy.ui.base.di.module
 
 import ba.ahavic.artistfy.ui.base.di.FragmentScope
-import ba.ahavic.artistfy.ui.main.MainFragment
-import ba.ahavic.artistfy.ui.main.MainFragmentModule
+import ba.ahavic.artistfy.ui.main.albums.AlbumsFragment
+import ba.ahavic.artistfy.ui.main.albums.MainFragmentModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -11,5 +11,5 @@ abstract class MainFragmentBuilder {
 
     @FragmentScope
     @ContributesAndroidInjector(modules = [MainFragmentModule::class])
-    abstract fun provideMainFragment(): MainFragment
+    abstract fun provideMainFragment(): AlbumsFragment
 }
