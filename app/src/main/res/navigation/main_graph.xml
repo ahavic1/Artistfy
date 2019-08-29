@@ -2,6 +2,11 @@
 <navigation
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_graph">
+    android:id="@+id/main_graph"
+    app:startDestination="@id/mainFragment">
 
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="ba.ahavic.artistfy.ui.main.MainFragment"
+        android:label="MainFragment" />
 </navigation>
