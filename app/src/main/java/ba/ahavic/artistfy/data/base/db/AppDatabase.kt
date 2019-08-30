@@ -11,7 +11,7 @@ import javax.inject.Singleton
 
 @Singleton
 @TypeConverters(DataTypeConverters::class)
-@Database(entities = [Artist::class, Album::class, Image::class], version = 1)
+@Database(entities = [Artist::class, Album::class], version = 1)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun albumDao(): AlbumDao
 }

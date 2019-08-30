@@ -18,6 +18,7 @@ buildscript {
 
         lifecycleVersion = '2.2.0-alpha03'
         navigationVersion = '2.2.0-alpha01'
+        navigationSafeArgsPlugin = '1.0.0'
 
         // Coroutines
         kotlinCoroutinesVersion = '1.2.1'
@@ -42,6 +43,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:$navigationSafeArgsPlugin"
     }
 }
 

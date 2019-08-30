@@ -1,9 +1,15 @@
 package ba.ahavic.artistfy.ui.base.view
 
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.fragment.NavHostFragment
 import ba.ahavic.artistfy.ui.base.viewmodel.BaseViewModel
+import ba.ahavic.artistfy.ui.base.viewmodel.NavigationAction
 import javax.inject.Inject
 
 abstract class BaseBoundFragment<ViewModelType : BaseViewModel, ViewDataBindingType : ViewDataBinding> :
@@ -19,6 +25,10 @@ abstract class BaseBoundFragment<ViewModelType : BaseViewModel, ViewDataBindingT
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(viewModelClass)
         lifecycle.addObserver(viewModel)
 
+        arguments?.let {
+            viewModel.arguments = it
+        }
+
         viewDataBinding?.let {
             val viewModelRId = viewModelNameRId
             if (viewModelRId != 0) {
@@ -27,6 +37,19 @@ abstract class BaseBoundFragment<ViewModelType : BaseViewModel, ViewDataBindingT
                 it.executePendingBindings()
             }
         }
+
         bindToViewModel()
+        setNavigationObserver()
+    }
+
+    private fun setNavigationObserver() {
+        viewModel.navigationAction.observe(viewLifecycleOwner, Observer { navAction ->
+            when (navAction) {
+                is NavigationAction.To -> getNavController().navigate(navAction.directions)
+                is NavigationAction.Back -> getNavController().navigateUp()
+            }
+        })
     }
 }
+
+fun Fragment.getNavController(): NavController = NavHostFragment.findNavController(this)

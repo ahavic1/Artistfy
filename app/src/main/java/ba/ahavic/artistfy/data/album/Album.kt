@@ -9,11 +9,13 @@ class Album(
     @PrimaryKey val mbid: String, val name: String,
     val url: String,
     val artist: Artist,
-    val images: List<Image>
+    val images: List<Image>,
+    val wiki: Wiki? = null
 )
 
-@Entity
-data class Image(@PrimaryKey val url: String, val size: ImageSize)
+data class Image(val url: String, val size: ImageSize)
+
+data class Wiki(val published: String, val summary: String, val content: String)
 
 enum class ImageSize {
     Small, Medium, Large, ExtraLarge

@@ -8,5 +8,17 @@
     <fragment
         android:id="@+id/albumsFragment"
         android:name="ba.ahavic.artistfy.ui.main.albums.AlbumsFragment"
-        android:label="MainFragment" />
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_albums_to_albumDetails"
+            app:destination="@id/albumDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/albumDetailsFragment"
+        android:name="ba.ahavic.artistfy.ui.main.albums.AlbumDetailsFragment"
+        android:label="AlbumDetailsFragment" >
+        <argument
+            android:name="albumId"
+            app:argType="string" />
+    </fragment>
 </navigation>

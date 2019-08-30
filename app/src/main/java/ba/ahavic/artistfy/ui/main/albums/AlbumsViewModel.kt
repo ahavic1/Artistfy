@@ -25,7 +25,7 @@ class AlbumsViewModel @Inject constructor(albumRepository: AlbumRepository) : Ba
     }
 
     fun actionAlbumSelected(album: Album) {
-
+        navigate(AlbumsFragmentDirections.actionAlbumsToAlbumDetails(album.mbid))
     }
 
     private fun renderError(error: NoAlbumsError) {
