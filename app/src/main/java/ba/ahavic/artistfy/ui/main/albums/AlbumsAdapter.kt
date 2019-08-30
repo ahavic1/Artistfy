@@ -41,12 +41,10 @@ class AlbumsAdapter(private val onAlbumSelectedListener: OnAlbumSelectedListener
     }
 }
 
-
 class AlbumsVH(
     private val binding: ItemAlbumsBinding,
     private val onAlbumSelectedListener: OnAlbumSelectedListener
 ) : RecyclerView.ViewHolder(binding.root) {
-
 
     companion object {
         fun create(
@@ -65,11 +63,11 @@ class AlbumsVH(
         }
     }
 
-    fun bind(album: Album) = with(binding) {
+    fun bind(album: Album) {
         itemView.setOnClickListener {
             onAlbumSelectedListener(album)
         }
-        setAlbum(album)
+        binding.album = album
         // set image
     }
 }

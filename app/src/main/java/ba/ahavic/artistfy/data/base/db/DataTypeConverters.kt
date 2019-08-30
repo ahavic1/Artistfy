@@ -2,19 +2,12 @@ package ba.ahavic.artistfy.data.base.db
 
 import androidx.room.TypeConverter
 import ba.ahavic.artistfy.data.album.Image
-import ba.ahavic.artistfy.data.album.ImageSize
 import ba.ahavic.artistfy.data.album.Wiki
 import ba.ahavic.artistfy.data.artist.Artist
 import com.google.gson.Gson
 import java.lang.reflect.Type
 
 class DataTypeConverters {
-
-    @TypeConverter
-    fun imageSizeToJson(imageSize: ImageSize): String? = toJson(imageSize)
-
-    @TypeConverter
-    fun imageSizeFromJson(imageSize: String): ImageSize? = fromJson<ImageSize>(imageSize)
 
     @TypeConverter
     fun artistToJson(artist: Artist): String? = toJson(artist)

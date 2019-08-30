@@ -41,7 +41,7 @@ class AlbumsFragment : BaseBoundFragment<AlbumsViewModel, FragmentMainBinding>()
 }
 
 @Module
-abstract class AlbumsFragmentModule {
+abstract class AlbumsModule {
 
     @Binds
     @IntoMap

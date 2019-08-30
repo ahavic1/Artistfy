@@ -3,6 +3,7 @@ package ba.ahavic.artistfy.ui.base.viewmodel
 import android.os.Bundle
 import androidx.lifecycle.*
 import androidx.navigation.NavDirections
+import ba.ahavic.artistfy.data.base.AppException
 import ba.ahavic.artistfy.ui.base.SingleLiveEvent
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
@@ -27,7 +28,9 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
      * [_coroutineExceptionHandler] context element is used as generic catch block of coroutine.
      */
     private var _coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
-        // TODO(Handle exception)
+        if (exception is AppException) {// handle
+        }
+        else throw exception
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
@@ -60,7 +63,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                 block()
             }
         } catch (exception: Exception) {
-
+            throw exception
         } finally {
             isLoading(false)
         }

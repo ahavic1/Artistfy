@@ -60,6 +60,11 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$ktxCoroutinesAdapter"
+
     // Dependency injection
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
@@ -74,9 +79,14 @@ dependencies {
 
     implementation "com.google.code.gson:gson:$gsonVersion"
 
-    // Coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion"
+    // Networking
+    implementation "com.squareup.okhttp3:okhttp:$okhttp3Version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3Version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit2Version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit2Version"
+
+    // Picasso
+    implementation "com.squareup.picasso:picasso:$picassoVersion"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
