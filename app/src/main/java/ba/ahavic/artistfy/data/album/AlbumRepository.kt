@@ -54,5 +54,5 @@ interface AlbumDao : BaseDao<Album> {
     suspend fun getAlbums(): List<Album>
 
     @Query("DELETE FROM Album WHERE mbid == :id")
-    suspend fun deleteAlbumById(id: String): List<Album>
+    suspend fun deleteAlbumById(id: String): Int
 }

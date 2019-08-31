@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/albumsFragment"
         android:name="ba.ahavic.artistfy.ui.main.home.MyAlbumsFragment"
-        android:label="MainFragment"
+        android:label="@string/my_albums_toolbar_title"
         tools:layout="@layout/fragment_my_albums">
         <action
             android:id="@+id/action_albums_to_albumDetails"
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/albumDetailsFragment"
         android:name="ba.ahavic.artistfy.ui.main.home.AlbumDetailsFragment"
-        android:label="AlbumDetailsFragment"
+        android:label="@string/album_details_toolbar_title"
         tools:layout="@layout/fragment_album_details">
         <argument
             android:name="album"
@@ -29,7 +29,7 @@
     <fragment
         android:id="@+id/searchArtistFragment"
         android:name="ba.ahavic.artistfy.ui.main.searchartist.SearchArtistFragment"
-        android:label="SearchArtistFragment"
+        android:label="@string/search_artist_toolbar_title"
         tools:layout="@layout/fragment_search_artist">
         <action
             android:id="@+id/action_searchArtistFragment_to_topAlbumsFragment"
@@ -38,7 +38,7 @@
     <fragment
         android:id="@+id/topAlbumsFragment"
         android:name="ba.ahavic.artistfy.ui.main.topalbums.TopAlbumsFragment"
-        android:label="TopAlbumsFragment"
+        android:label="@string/top_albums_toolbar_title"
         tools:layout="@layout/fragment_top_albums">
         <argument
             android:name="artistName"

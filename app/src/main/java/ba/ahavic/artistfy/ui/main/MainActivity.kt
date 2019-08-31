@@ -5,6 +5,9 @@ import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupActionBarWithNavController
 import ba.ahavic.artistfy.BR
 import ba.ahavic.artistfy.R
 import ba.ahavic.artistfy.databinding.ActivityMainBinding
@@ -41,7 +44,11 @@ class MainActivity : BaseBoundActivity<MainViewModel, ActivityMainBinding>() {
             )
         }
 
+        setupActionBarWithNavController(findNavController(R.id.main_navigation_host))
     }
+
+    override fun onSupportNavigateUp() =
+        findNavController(R.id.main_navigation_host).navigateUp()
 
     companion object {
         const val REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION = 77

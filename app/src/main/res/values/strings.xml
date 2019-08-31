@@ -9,5 +9,9 @@
     <string name="search_artist_btn_search">Search Artist</string>
     <string name="album_details_remove">Remove from My Albums</string>
     <string name="album_details_save">Save to My Albums</string>
+    <string name="my_albums_toolbar_title">My Albums</string>
+    <string name="album_details_toolbar_title">Details</string>
+    <string name="search_artist_toolbar_title">Search artists</string>
+    <string name="top_albums_toolbar_title">Top Albums</string>
 
 </resources>
