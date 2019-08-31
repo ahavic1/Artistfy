@@ -1,9 +1,7 @@
 package ba.ahavic.artistfy.data.base.di
 
-import ba.ahavic.artistfy.data.base.network.DefaultErrorMapper
-import ba.ahavic.artistfy.data.base.network.DefaultNetworkConfig
-import ba.ahavic.artistfy.data.base.network.ErrorMapper
-import ba.ahavic.artistfy.data.base.network.NetworkConfig
+import android.content.Context
+import ba.ahavic.artistfy.data.base.network.*
 import com.google.gson.Gson
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Binds
@@ -74,6 +72,11 @@ abstract class NetworkModule {
             .addCallAdapterFactory(CoroutineCallAdapterFactory.invoke())
             .client(okHttpClient)
             .build()
+
+        @Provides
+        @Singleton
+        @JvmStatic
+        fun provideImageDownloader(context: Context): ImageDownloader = ImageDownloader(context)
     }
 
     @Binds

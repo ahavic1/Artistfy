@@ -3,12 +3,15 @@ package ba.ahavic.artistfy.data.base
 import ba.ahavic.artistfy.data.base.network.ApiError
 import ba.ahavic.artistfy.data.base.network.DefaultErrorMapper
 import ba.ahavic.artistfy.data.base.network.ErrorMapper
+import kotlinx.coroutines.Dispatchers
 import retrofit2.Response
 import javax.inject.Inject
 
 abstract class BaseRepository {
     @Inject
     protected lateinit var errorMapper: DefaultErrorMapper
+    @Inject
+    protected lateinit var dispachers: Dispatchers
 }
 
 fun <T> Response<List<T>>.asBodyList(errorMapper: ErrorMapper): List<T> =

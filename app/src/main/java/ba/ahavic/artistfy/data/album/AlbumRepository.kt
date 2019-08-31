@@ -5,17 +5,21 @@ import androidx.room.Query
 import ba.ahavic.artistfy.data.artist.Artist
 import ba.ahavic.artistfy.data.base.BaseRepository
 import ba.ahavic.artistfy.data.base.db.BaseDao
+import ba.ahavic.artistfy.data.base.network.ImageDownloader
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 interface AlbumRepository {
     suspend fun getAlbums(): List<Album>
-    suspend fun saveAlbum(): Boolean
+    suspend fun saveAlbum(album: Album): Boolean
     suspend fun deleteAlbum(): Boolean
     suspend fun getAlbumById(albumId: String): Album
 }
 
-class AlbumRepositoryImpl @Inject constructor(private val albumDao: AlbumDao) : BaseRepository(),
-    AlbumRepository {
+class AlbumRepositoryImpl @Inject constructor(
+    private val albumDao: AlbumDao,
+    private val imageDownloader: ImageDownloader
+) : BaseRepository(), AlbumRepository {
 
     override suspend fun getAlbumById(albumId: String): Album {
         return Album(
@@ -39,7 +43,8 @@ class AlbumRepositoryImpl @Inject constructor(private val albumDao: AlbumDao) : 
                     |containing Lorem Ipsumpassages, and more recently with desktop publishing 
                     |software like Aldus PageMaker including versions of Lorem Ipsum.""".trimMargin(),
                 "sasas"
-            ))
+            )
+        )
     }
 
     override suspend fun getAlbums(): List<Album> {
@@ -52,18 +57,31 @@ class AlbumRepositoryImpl @Inject constructor(private val albumDao: AlbumDao) : 
                 "Klika",
                 "htttps//ademir",
                 Artist(
-                    "${i+1}",
+                    "${i + 1}",
                     "Ademir Havic",
                     "https//Ademir"
                 ),
-                "htttps//ademir"))
+                "htttps//ademir"
+            )
+            )
         }
 
         return list
     }
 
-    override suspend fun saveAlbum(): Boolean {
-        TODO("not implemented")
+    override suspend fun saveAlbum(album: Album): Boolean = withContext(dispachers.IO) {
+        try {
+            album.image?.let {
+                val localImagePath = imageDownloader.downloadImage(it)
+                albumDao.save(album.copy(
+                    image = localImagePath,
+                    cached = true
+                ))
+            } ?: albumDao.save(album)
+            true
+        } catch (ex: Exception) {
+            false
+        }
     }
 
     override suspend fun deleteAlbum(): Boolean {

@@ -1,5 +1,6 @@
 package ba.ahavic.artistfy.data.album
 
+import androidx.annotation.Nullable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import ba.ahavic.artistfy.data.artist.Artist
@@ -13,6 +14,7 @@ data class Album(
     val url: String,
     val artist: Artist,
     val image: String?,
+    @Nullable
     val wiki: Wiki? = null,
     val cached: Boolean = false
 ) : Serializable

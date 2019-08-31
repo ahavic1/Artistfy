@@ -22,7 +22,7 @@ class DataTypeConverters {
     fun imageFromJson(image: String): List<Image> = fromJson<List<Image>>(image)
 
     @TypeConverter
-    fun wikiToJson(albumWiki: Wiki): String? = toJson(albumWiki)
+    fun wikiToJson(albumWiki: Wiki?): String? = toJson(albumWiki)
 
     @TypeConverter
     fun wikiFromJson(albumWiki: String): Wiki = fromJson<Wiki>(albumWiki)

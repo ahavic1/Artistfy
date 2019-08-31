@@ -10,7 +10,7 @@ interface BaseDao<T> {
      *
      * @param obj the object to be inserted.
      */
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun save(obj: T)
 
     /**

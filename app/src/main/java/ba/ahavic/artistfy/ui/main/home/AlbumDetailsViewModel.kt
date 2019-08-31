@@ -19,8 +19,11 @@ class AlbumDetailsViewModel @Inject constructor(private val albumRepository: Alb
     }
 
     fun actionSaveToMyAlbums() {
-
-
+        launch {
+            isLoading(true)
+            albumRepository.saveAlbum(album.value!!)
+            isLoading(false)
+        }
     }
 
     fun actionRemoveFromMyAlbums() {
