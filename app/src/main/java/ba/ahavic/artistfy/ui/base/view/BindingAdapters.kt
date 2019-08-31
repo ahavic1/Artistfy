@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
+import java.io.File
 
 object BindingAdapters {
 
@@ -15,9 +16,14 @@ object BindingAdapters {
 
     @BindingAdapter("app:src")
     @JvmStatic
-    fun setSrc(imageView: ImageView, path: String?) {
-        if (path?.isNotEmpty() == true) {
-            Picasso.get().load(path).into(imageView)
+    fun setSrc(imageView: ImageView, uri: String?) {
+        if (uri?.isNotEmpty() == true) {
+            val filePath = File(uri)
+            if (filePath.exists()) {
+                Picasso.get().load(filePath).into(imageView)
+            } else {
+                Picasso.get().load(uri).into(imageView)
+            }
         }
     }
 }

@@ -12,8 +12,7 @@ import javax.inject.Inject
 interface AlbumRepository {
     suspend fun getAlbums(): List<Album>
     suspend fun saveAlbum(album: Album): Boolean
-    suspend fun deleteAlbum(): Boolean
-    suspend fun getAlbumById(albumId: String): Album
+    suspend fun deleteAlbum(album: Album): Boolean
 }
 
 class AlbumRepositoryImpl @Inject constructor(
@@ -21,53 +20,7 @@ class AlbumRepositoryImpl @Inject constructor(
     private val imageDownloader: ImageDownloader
 ) : BaseRepository(), AlbumRepository {
 
-    override suspend fun getAlbumById(albumId: String): Album {
-        return Album(
-            "1212",
-            "Klika",
-            "htttps//ademir",
-            Artist(
-                "21212",
-                "Ademir Havic",
-                "https//Ademir"
-            ),
-            "htttps//ademir",
-            Wiki(
-                "29/08/2003",
-                """Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                    |Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                    |when an unknown printer took a galley of type and scrambled it to make a 
-                    |type specimen book. It has survived not only five centuries, but also the 
-                    |leap into electronic typesetting, remaining essentially unchanged. 
-                    |It was popularised in the 1960s with the release of Letraset sheets 
-                    |containing Lorem Ipsumpassages, and more recently with desktop publishing 
-                    |software like Aldus PageMaker including versions of Lorem Ipsum.""".trimMargin(),
-                "sasas"
-            )
-        )
-    }
-
-    override suspend fun getAlbums(): List<Album> {
-        //return albumDao.getAlbums()
-        val list = arrayListOf<Album>()
-
-        for (i in 1..50) {
-            list.add(Album(
-                "$i",
-                "Klika",
-                "htttps//ademir",
-                Artist(
-                    "${i + 1}",
-                    "Ademir Havic",
-                    "https//Ademir"
-                ),
-                "htttps//ademir"
-            )
-            )
-        }
-
-        return list
-    }
+    override suspend fun getAlbums(): List<Album> = albumDao.getAlbums()
 
     override suspend fun saveAlbum(album: Album): Boolean = withContext(dispachers.IO) {
         try {
@@ -84,14 +37,22 @@ class AlbumRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun deleteAlbum(): Boolean {
-        TODO("not implemented")
+    override suspend fun deleteAlbum(album: Album): Boolean {
+        return try {
+            albumDao.deleteAlbumById(album.mbid)
+            true
+        } catch (ex: Exception) {
+            false
+        }
     }
 }
 
 @Dao
 interface AlbumDao : BaseDao<Album> {
 
-    @Query("SELECT * FROM album")
+    @Query("SELECT * FROM Album")
     suspend fun getAlbums(): List<Album>
+
+    @Query("DELETE FROM Album WHERE mbid == :id")
+    suspend fun deleteAlbumById(id: String): List<Album>
 }

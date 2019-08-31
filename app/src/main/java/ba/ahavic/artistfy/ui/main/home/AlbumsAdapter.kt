@@ -69,9 +69,5 @@ class AlbumsVH(
             onAlbumSelectedListener(album)
         }
         binding.album = album
-
-        if (album.image?.isNotEmpty() == true) {
-            Picasso.get().load(album.image).into(binding.imageAlbumGraphic)
-        }
     }
 }

@@ -29,6 +29,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:scaleType="fitXY"
+                app:src="@{album.image}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/ic_launcher_background"/>
