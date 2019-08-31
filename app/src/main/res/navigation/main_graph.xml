@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/albumsFragment"
-        android:name="ba.ahavic.artistfy.ui.main.albums.AlbumsFragment"
+        android:name="ba.ahavic.artistfy.ui.main.home.MyAlbumsFragment"
         android:label="MainFragment"
-        tools:layout="@layout/fragment_main">
+        tools:layout="@layout/fragment_my_albums">
         <action
             android:id="@+id/action_albums_to_albumDetails"
             app:destination="@id/albumDetailsFragment" />
@@ -19,16 +19,32 @@
     </fragment>
     <fragment
         android:id="@+id/albumDetailsFragment"
-        android:name="ba.ahavic.artistfy.ui.main.albums.AlbumDetailsFragment"
+        android:name="ba.ahavic.artistfy.ui.main.home.AlbumDetailsFragment"
         android:label="AlbumDetailsFragment"
         tools:layout="@layout/fragment_album_details">
         <argument
-            android:name="albumId"
-            app:argType="string" />
+            android:name="album"
+            app:argType="ba.ahavic.artistfy.data.album.Album" />
     </fragment>
     <fragment
         android:id="@+id/searchArtistFragment"
-        android:name="ba.ahavic.artistfy.ui.main.artist.SearchArtistFragment"
+        android:name="ba.ahavic.artistfy.ui.main.searchartist.SearchArtistFragment"
         android:label="SearchArtistFragment"
-        tools:layout="@layout/fragment_search_artist"/>
+        tools:layout="@layout/fragment_search_artist">
+        <action
+            android:id="@+id/action_searchArtistFragment_to_topAlbumsFragment"
+            app:destination="@id/topAlbumsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/topAlbumsFragment"
+        android:name="ba.ahavic.artistfy.ui.main.topalbums.TopAlbumsFragment"
+        android:label="TopAlbumsFragment"
+        tools:layout="@layout/fragment_top_albums">
+        <argument
+            android:name="artistName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_topAlbums_to_albumDetails"
+            app:destination="@id/albumDetailsFragment" />
+    </fragment>
 </navigation>

@@ -6,12 +6,12 @@
     <data>
         <variable
             name="viewModel"
-            type="ba.ahavic.artistfy.ui.main.albums.AlbumDetailsViewModel" />
+            type="ba.ahavic.artistfy.ui.main.home.AlbumDetailsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="@dimen/margin_normal">
 
         <ImageView
@@ -19,7 +19,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_launcher_background"
+            app:src="@{viewModel.album.image}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,6 +58,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_album_graphic"
             tools:text="@string/all_placeholder_lorem_ispum" />
+
+        <Button
+            android:id="@+id/button_delete_from_my_albums"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="@string/album_details_remove"
+            android:onClick="@{() -> viewModel.actionRemoveFromMyAlbums()}"
+            app:visible="@{viewModel.album.cached}"
+            app:layout_constraintVertical_bias="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_summary" />
+
+        <Button
+            android:id="@+id/button_save_to_my_albums"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:onClick="@{() -> viewModel.actionSaveToMyAlbums()}"
+            android:text="@string/album_details_save"
+            app:visible="@{!viewModel.album.cached}"
+            app:layout_constraintVertical_bias="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_summary" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

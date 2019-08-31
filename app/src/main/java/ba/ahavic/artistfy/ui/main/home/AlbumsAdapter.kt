@@ -1,4 +1,4 @@
-package ba.ahavic.artistfy.ui.main.albums
+package ba.ahavic.artistfy.ui.main.home
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ba.ahavic.artistfy.R
 import ba.ahavic.artistfy.data.album.Album
 import ba.ahavic.artistfy.databinding.ItemAlbumsBinding
+import com.squareup.picasso.Picasso
 
 typealias OnAlbumSelectedListener = (Album) -> Unit
 
@@ -32,7 +33,7 @@ class AlbumsAdapter(private val onAlbumSelectedListener: OnAlbumSelectedListener
         holder.bind(albums[position])
     }
 
-    override fun getItemId(position: Int): Long = albums[position].mbid.hashCode().toLong()
+    override fun getItemId(position: Int): Long = albums[position].hashCode().toLong()
 
     fun setData(item: List<Album>) {
         albums.clear()
@@ -68,6 +69,9 @@ class AlbumsVH(
             onAlbumSelectedListener(album)
         }
         binding.album = album
-        // set image
+
+        if (album.image?.isNotEmpty() == true) {
+            Picasso.get().load(album.image).into(binding.imageAlbumGraphic)
+        }
     }
 }

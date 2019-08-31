@@ -1,12 +1,14 @@
 package ba.ahavic.artistfy.ui.base.di.module
 
 import ba.ahavic.artistfy.ui.base.di.FragmentScope
-import ba.ahavic.artistfy.ui.main.artist.SearchArtistFragment
-import ba.ahavic.artistfy.ui.main.artist.SearchArtistModule
-import ba.ahavic.artistfy.ui.main.albums.AlbumDetailsFragment
-import ba.ahavic.artistfy.ui.main.albums.AlbumDetailsModule
-import ba.ahavic.artistfy.ui.main.albums.AlbumsFragment
-import ba.ahavic.artistfy.ui.main.albums.AlbumsModule
+import ba.ahavic.artistfy.ui.main.searchartist.SearchArtistFragment
+import ba.ahavic.artistfy.ui.main.searchartist.SearchArtistModule
+import ba.ahavic.artistfy.ui.main.home.AlbumDetailsFragment
+import ba.ahavic.artistfy.ui.main.home.AlbumDetailsModule
+import ba.ahavic.artistfy.ui.main.home.MyAlbumsFragment
+import ba.ahavic.artistfy.ui.main.home.AlbumsModule
+import ba.ahavic.artistfy.ui.main.topalbums.TopAlbumsFragment
+import ba.ahavic.artistfy.ui.main.topalbums.TopAlbumsModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -15,7 +17,7 @@ abstract class MainFragmentBuilder {
 
     @FragmentScope
     @ContributesAndroidInjector(modules = [AlbumsModule::class])
-    abstract fun provideAlbumsFragment(): AlbumsFragment
+    abstract fun provideAlbumsFragment(): MyAlbumsFragment
 
     @FragmentScope
     @ContributesAndroidInjector(modules = [AlbumDetailsModule::class])
@@ -24,4 +26,8 @@ abstract class MainFragmentBuilder {
     @FragmentScope
     @ContributesAndroidInjector(modules = [SearchArtistModule::class])
     abstract fun provideSearchArtistFragment(): SearchArtistFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = [TopAlbumsModule::class])
+    abstract fun provideTopAlbumsFragment(): TopAlbumsFragment
 }

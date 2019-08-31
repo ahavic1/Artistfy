@@ -27,7 +27,7 @@ class AlbumRepositoryImpl @Inject constructor(private val albumDao: AlbumDao) : 
                 "Ademir Havic",
                 "https//Ademir"
             ),
-            listOf(),
+            "htttps//ademir",
             Wiki(
                 "29/08/2003",
                 """Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -56,7 +56,7 @@ class AlbumRepositoryImpl @Inject constructor(private val albumDao: AlbumDao) : 
                     "Ademir Havic",
                     "https//Ademir"
                 ),
-                listOf()))
+                "htttps//ademir"))
         }
 
         return list

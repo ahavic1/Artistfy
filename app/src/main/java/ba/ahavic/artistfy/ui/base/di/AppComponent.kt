@@ -29,7 +29,7 @@ import javax.inject.Singleton
     NetworkModule::class,
     AuthInterceptorModule::class,
 
-    // Data
+    // ArtistData
     CacheModule::class,
     AlbumDataModule::class,
     ArtistDataModule::class

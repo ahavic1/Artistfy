@@ -1,4 +1,4 @@
-package ba.ahavic.artistfy.ui.main.albums
+package ba.ahavic.artistfy.ui.main.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -26,7 +26,6 @@ class AlbumDetailsFragment : BaseBoundFragment<AlbumDetailsViewModel, FragmentAl
         get() = AlbumDetailsViewModel::class.java
 
     override fun bindToViewModel() {
-
     }
 }
 
@@ -36,25 +35,5 @@ abstract class AlbumDetailsModule {
     @Binds
     @IntoMap
     @ViewModelKey(AlbumDetailsViewModel::class)
-    abstract fun bindAlbumDetailsViewModel(viewModel: AlbumDetailsViewModel): ViewModel
-}
-
-class AlbumDetailsViewModel @Inject constructor(private val albumRepository: AlbumRepository) :
-    BaseViewModel() {
-
-    private val albumId: String by lazy {
-        AlbumDetailsFragmentArgs.fromBundle(arguments).albumId
-    }
-
-    private val _album = MutableLiveData<Album>()
-    val album: LiveData<Album> by lazy {
-        getAlbum()
-        _album
-    }
-
-    private fun getAlbum() {
-        launch {
-            _album.value = albumRepository.getAlbumById(albumId)
-        }
-    }
+    abstract fun provideAlbumDetailsViewModel(viewModel: AlbumDetailsViewModel): ViewModel
 }

@@ -2,55 +2,27 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    
+
     <data>
         <variable
             name="viewModel"
-            type="ba.ahavic.artistfy.ui.main.searchartist.SearchArtistViewModel" />
+            type="ba.ahavic.artistfy.ui.main.home.MyAlbumsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/container_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_small"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <EditText
-                android:id="@+id/edit_search_artists"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@={viewModel.searchText}"
-                android:layout_toStartOf="@+id/button_search_artist"
-                android:paddingEnd="@dimen/margin_normal"
-                android:paddingStart="@dimen/margin_normal"/>
-
-            <Button
-                android:id="@+id/button_search_artist"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_alignParentEnd="true"
-                android:onClick="@{() -> viewModel.actionSearchArtists()}"
-                android:text="@string/search_artist_btn_search"/>
-
-        </RelativeLayout>
-
         <LinearLayout
-            android:id="@+id/container_loader"
+            android:id="@+id/linear_loading_container"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:paddingTop="140dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/container_search"
+            app:layout_constraintTop_toTopOf="parent"
             app:visible="@{viewModel.isLoading}"
             tools:visibility="gone">
 
@@ -73,21 +45,21 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_artists"
+            android:id="@+id/recycler_albums"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:background="@color/white"
             android:fadingEdge="vertical"
             android:fadingEdgeLength="@dimen/margin_tiny"
             android:requiresFadingEdge="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/container_search"
+            app:layout_constraintTop_toTopOf="parent"
             app:visible="@{!viewModel.isLoading}"
-            tools:itemCount="30"
-            tools:listitem="@layout/item_albums" />
+            tools:listitem="@layout/item_albums"
+            tools:itemCount="10" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

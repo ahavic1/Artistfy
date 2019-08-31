@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="ba.ahavic.artistfy.ui.main.albums.AlbumsViewModel" />
+            type="ba.ahavic.artistfy.ui.main.topalbums.TopAlbumsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,7 +14,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/linear_loading_container"
+            android:id="@+id/container_loader"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"

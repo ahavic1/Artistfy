@@ -1,4 +1,4 @@
-package ba.ahavic.artistfy.ui.main.artist
+package ba.ahavic.artistfy.ui.main.searchartist
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -72,7 +72,9 @@ class ArtistVH(
         binding.artist = artist
 
         artist.imageUrl?.let {
-            Picasso.get().load(it).into(binding.imageArtistGraphic)
+            if (it.isNotEmpty()) {
+                Picasso.get().load(it).into(binding.imageArtistGraphic)
+            }
         }
     }
 }

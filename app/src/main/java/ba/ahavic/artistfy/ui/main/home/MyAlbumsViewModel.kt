@@ -1,4 +1,4 @@
-package ba.ahavic.artistfy.ui.main.albums
+package ba.ahavic.artistfy.ui.main.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,7 +9,7 @@ import ba.ahavic.artistfy.ui.base.viewmodel.BaseError
 import ba.ahavic.artistfy.ui.base.viewmodel.BaseViewModel
 import javax.inject.Inject
 
-class AlbumsViewModel @Inject constructor(albumRepository: AlbumRepository) : BaseViewModel() {
+class MyAlbumsViewModel @Inject constructor(albumRepository: AlbumRepository) : BaseViewModel() {
 
     private val _albums = MutableLiveData<List<Album>>()
     val albums: LiveData<List<Album>> = _albums
@@ -26,7 +26,7 @@ class AlbumsViewModel @Inject constructor(albumRepository: AlbumRepository) : Ba
 
     fun actionAlbumSelected(album: Album) {
         // navigate(AlbumsFragmentDirections.actionAlbumsToAlbumDetails(album.mbid))
-        navigate(AlbumsFragmentDirections.actionAlbumsToSearchArtist())
+        navigate(MyAlbumsFragmentDirections.actionAlbumsToSearchArtist())
     }
 
     private fun renderError(error: NoAlbumsError) {

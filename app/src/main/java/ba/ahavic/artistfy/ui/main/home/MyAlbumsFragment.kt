@@ -1,28 +1,28 @@
-package ba.ahavic.artistfy.ui.main.albums
+package ba.ahavic.artistfy.ui.main.home
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import ba.ahavic.artistfy.BR
 import ba.ahavic.artistfy.R
-import ba.ahavic.artistfy.databinding.FragmentMainBinding
+import ba.ahavic.artistfy.databinding.FragmentMyAlbumsBinding
 import ba.ahavic.artistfy.ui.base.view.BaseBoundFragment
 import ba.ahavic.artistfy.ui.base.viewmodel.ViewModelKey
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 
-class AlbumsFragment : BaseBoundFragment<AlbumsViewModel, FragmentMainBinding>() {
+class MyAlbumsFragment : BaseBoundFragment<MyAlbumsViewModel, FragmentMyAlbumsBinding>() {
 
     private val albumsAdapter by lazy {
         AlbumsAdapter(viewModel::actionAlbumSelected)
     }
 
     override val layoutId: Int
-        get() = R.layout.fragment_main
+        get() = R.layout.fragment_my_albums
     override val viewModelNameRId: Int
         get() = BR.viewModel
-    override val viewModelClass: Class<AlbumsViewModel>
-        get() = AlbumsViewModel::class.java
+    override val viewModelClass: Class<MyAlbumsViewModel>
+        get() = MyAlbumsViewModel::class.java
 
     override fun bindToViewModel() {
         setupUI()
@@ -45,6 +45,6 @@ abstract class AlbumsModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(AlbumsViewModel::class)
-    abstract fun bindMainFragmentViewModel(viewModel: AlbumsViewModel): ViewModel
+    @ViewModelKey(MyAlbumsViewModel::class)
+    abstract fun provideMyAlbumsFragmentViewModel(viewModel: MyAlbumsViewModel): ViewModel
 }
