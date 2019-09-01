@@ -2,8 +2,12 @@ package ba.ahavic.artistfy.ui.main.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import ba.ahavic.artistfy.R
 import ba.ahavic.artistfy.data.album.Album
 import ba.ahavic.artistfy.data.album.AlbumRepository
+import ba.ahavic.artistfy.ui.base.AppError
+import ba.ahavic.artistfy.ui.base.ReasonOfError
+import ba.ahavic.artistfy.ui.base.viewmodel.BaseError
 import ba.ahavic.artistfy.ui.base.viewmodel.BaseViewModel
 import javax.inject.Inject
 
@@ -16,10 +20,21 @@ class AlbumDetailsViewModel @Inject constructor(private val albumRepository: Alb
         _album
     }
 
+    override fun defaultErrorHandler(appError: AppError) {
+        when (appError.reasonOfError) {
+            ReasonOfError.DatabaseSaveFailed -> setError(AlbumSaveFailed)
+            else -> super.defaultErrorHandler(appError)
+        }
+    }
+
     fun actionSaveToMyAlbums() {
         launch {
             isLoading(true)
-            _album.value = albumRepository.saveAlbum(album.value!!)
+            if (albumRepository.saveAlbum(album.value!!)) {
+                _album.value = _album.value?.copy(
+                    cached = true
+                )
+            }
             isLoading(false)
         }
     }
@@ -43,3 +58,7 @@ class AlbumDetailsViewModel @Inject constructor(private val albumRepository: Alb
         }
     }
 }
+
+object AlbumSaveFailed :
+    BaseError.FeatureError(R.string.album_details_save_failed, R.string.album_details_save_failed)
+

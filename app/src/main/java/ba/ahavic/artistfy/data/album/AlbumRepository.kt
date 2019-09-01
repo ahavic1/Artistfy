@@ -20,7 +20,7 @@ import javax.inject.Inject
 interface AlbumRepository {
     suspend fun getAlbums(): List<Album>
     suspend fun getAlbum(album: Album): Album
-    suspend fun saveAlbum(album: Album): Album
+    suspend fun saveAlbum(album: Album): Boolean
     suspend fun deleteAlbum(album: Album): Boolean
 }
 
@@ -45,14 +45,13 @@ class AlbumRepositoryImpl @Inject constructor(
         ).await().asBody(errorMapper).album.let { Mappers.mapAlbumInfo(it) }
     }
 
-    override suspend fun saveAlbum(album: Album): Album = withContext(dispachers.IO) {
+    override suspend fun saveAlbum(album: Album): Boolean = withContext(dispachers.IO) {
         try {
             val imagePath = album.image?.let { imageDownloader.downloadImage(it) }
-            val tmp = album.copy(image = imagePath, cached = true)
-            albumDao.save(tmp)
-            return@withContext tmp
+            albumDao.save(album.copy(image = imagePath, cached = true))
+            return@withContext true
         } catch (ex: Exception) {
-            throw AppException(AppError(ReasonOfError.DatabaseTransactionFailed))
+            throw AppException(AppError(ReasonOfError.DatabaseSaveFailed))
         }
     }
 

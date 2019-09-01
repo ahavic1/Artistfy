@@ -16,5 +16,6 @@
     <string name="top_albums_toolbar_title">Top Albums</string>
     <string name="menu_search">Search</string>
     <string name="my_albums_no_albums">No Saved Albums</string>
+    <string name="album_details_save_failed">Album could not be saved</string>
 
 </resources>
