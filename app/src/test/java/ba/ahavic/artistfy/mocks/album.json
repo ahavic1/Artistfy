@@ -1,0 +1,29 @@
+{
+  "mbid": "63b3a8ca-26f2-4e2b-b867-647a6ec2bebd",
+  "name": "Believe",
+  "url": "https://www.last.fm/music/Cher/Believe",
+  "artist": {
+    "name": "Cher",
+    "mbid": "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+    "url": "https://www.last.fm/music/Cher"
+  },
+  "image": "https://lastfm-img2.akamaized.net/i/u/64s/b0c2311a9af7f0edbc8b99450944ca1b.png",
+  "wiki": {
+    "published": "27 Jul 2008, 15:55",
+    "summary": "Believe is the twenty third studio album",
+    "content": "Believe is the twenty third studio album"
+  },
+  "track": [
+    {
+      "name": "Believe",
+      "url": "https://www.last.fm/music/Cher/_/Believe",
+      "duration": "240"
+    },
+    {
+      "name": "The Power",
+      "url": "https://www.last.fm/music/Cher/_/The+Power",
+      "duration": "236"
+    }
+  ],
+  "cached": true
+}

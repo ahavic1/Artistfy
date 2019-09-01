@@ -67,6 +67,7 @@ dependencies {
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinCoroutinesVersion"
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$ktxCoroutinesAdapter"
 
     // Dependency injection
@@ -92,9 +93,12 @@ dependencies {
     // Picasso
     implementation "com.squareup.picasso:picasso:$picassoVersion"
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoCoreVersion"
+    testImplementation "android.arch.core:core-testing:$coreTestingVersion"
+
+    androidTestImplementation "androidx.test:runner:$testRunnerVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
 }
 
 
