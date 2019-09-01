@@ -29,15 +29,12 @@ class MainActivity : BaseBoundActivity<MainViewModel, ActivityMainBinding>() {
         get() = MainViewModel::class.java
 
     override fun bindToViewModel() {
-
         val writeExternalStoragePermission = ContextCompat.checkSelfPermission(
             applicationContext,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
         )
 
-        // If do not grant write external storage permission.
         if (writeExternalStoragePermission != PackageManager.PERMISSION_GRANTED) {
-            // Request user to grant write external storage permission.
             ActivityCompat.requestPermissions(this,
                 arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
                 REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION

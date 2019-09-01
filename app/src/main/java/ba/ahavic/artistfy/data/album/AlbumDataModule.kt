@@ -4,6 +4,7 @@ import ba.ahavic.artistfy.data.base.db.AppDatabase
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module
@@ -20,5 +21,10 @@ abstract class AlbumDataModule {
         @Singleton
         @JvmStatic
         fun provideAlbumDao(appDatabase: AppDatabase): AlbumDao = appDatabase.albumDao()
+
+        @Provides
+        @Singleton
+        @JvmStatic
+        fun provideAlbumApi(retrofit: Retrofit): AlbumApi = retrofit.create(AlbumApi::class.java)
     }
 }

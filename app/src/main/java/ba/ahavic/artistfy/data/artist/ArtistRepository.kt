@@ -1,8 +1,9 @@
 package ba.ahavic.artistfy.data.artist
 
 import ba.ahavic.artistfy.BuildConfig
+import ba.ahavic.artistfy.data.Mappers
 import ba.ahavic.artistfy.data.album.Album
-import ba.ahavic.artistfy.data.album.AlbumsData
+import ba.ahavic.artistfy.data.album.TopAlbumData
 import ba.ahavic.artistfy.data.base.BaseRepository
 import ba.ahavic.artistfy.data.base.asBody
 import kotlinx.coroutines.Deferred
@@ -23,34 +24,14 @@ class ArtistRepositoryImpl @Inject constructor(private val artistApi: ArtistApi)
         return artistApi.getArtistsAsync(artistName = artistName, page = page).await()
             .asBody(errorMapper)
             .results.artistmatches.artist
-            .map {
-                Artist(
-                    it.mbid,
-                    it.name,
-                    it.url,
-                    it.image.find { image ->
-                        image.size.equals("large") || image.size.equals("medium")
-                    }?.url
-                )
-            }
+            .map { Mappers.mapArtist(it) }
     }
 
     override suspend fun getTopAlbums(artistName: String): List<Album> {
         return artistApi.getTopAlbumsAsync(artistName = artistName).await()
             .asBody(errorMapper)
             .topalbums.album
-            .map {
-                Album(
-                    it.mbid ?: it.name,
-                    it.name,
-                    it.url,
-                    it.artist,
-                    it.image?.find { image ->
-                        image.size.equals("large") || image.size.equals("medium")
-                    }?.url!!,
-                    it.wiki
-                )
-            }
+            .map { Mappers.mapAlbum(it) }
     }
 }
 
@@ -69,5 +50,5 @@ interface ArtistApi {
         @Query("limit") limitPerPage: String = BuildConfig.limitPerPage,
         @Query("page") page: String = "1",
         @Query("artist") artistName: String
-    ): Deferred<Response<AlbumsData>>
+    ): Deferred<Response<TopAlbumData>>
 }

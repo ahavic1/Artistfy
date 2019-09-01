@@ -1,5 +1,9 @@
 package ba.ahavic.artistfy.ui.main.home
 
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import ba.ahavic.artistfy.BR
@@ -23,6 +27,23 @@ class MyAlbumsFragment : BaseBoundFragment<MyAlbumsViewModel, FragmentMyAlbumsBi
         get() = BR.viewModel
     override val viewModelClass: Class<MyAlbumsViewModel>
         get() = MyAlbumsViewModel::class.java
+
+    override fun preInflate() {
+        super.preInflate()
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_search, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_search) {
+            viewModel.goToSearchArtists()
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     override fun bindToViewModel() {
         setupUI()

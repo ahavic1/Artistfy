@@ -2,6 +2,7 @@ package ba.ahavic.artistfy.data.base.db
 
 import androidx.room.TypeConverter
 import ba.ahavic.artistfy.data.album.Image
+import ba.ahavic.artistfy.data.album.Track
 import ba.ahavic.artistfy.data.album.Wiki
 import ba.ahavic.artistfy.data.artist.Artist
 import com.google.gson.Gson
@@ -10,7 +11,7 @@ import java.lang.reflect.Type
 class DataTypeConverters {
 
     @TypeConverter
-    fun artistToJson(artist: Artist): String? = toJson(artist)
+    fun artistToJson(artist: Artist?): String? = toJson(artist)
 
     @TypeConverter
     fun artistFromJson(artist: String): Artist? = fromJson<Artist>(artist)
@@ -26,6 +27,12 @@ class DataTypeConverters {
 
     @TypeConverter
     fun wikiFromJson(albumWiki: String): Wiki = fromJson<Wiki>(albumWiki)
+
+    @TypeConverter
+    fun tracksToJson(track: List<Track>?): String? = toJson(track)
+
+    @TypeConverter
+    fun tracksFromJson(track: String): List<Track> = fromJson<List<Track>>(track)
 
     private inline fun <reified T> fromJson(value: String, type: Type): List<T> {
         return Gson().fromJson(value, type)

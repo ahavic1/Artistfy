@@ -2,7 +2,7 @@ package ba.ahavic.artistfy.data.base.network
 
 import androidx.annotation.NonNull
 import ba.ahavic.artistfy.BuildConfig
-import ba.ahavic.artistfy.data.ClientConfig
+import ba.ahavic.artistfy.data.base.ClientConfig
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoSet

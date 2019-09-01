@@ -32,7 +32,7 @@ class ImageDownloader @Inject constructor(private val context: Context) {
                 val destinationAbsoluteFilePath = "$directory/$fileName"
 
                 if (File(destinationAbsoluteFilePath).exists()) {
-                    return directory.toString() + fileName
+                    return destinationAbsoluteFilePath
                 }
 
                 val downloadManager =
@@ -42,7 +42,7 @@ class ImageDownloader @Inject constructor(private val context: Context) {
                     .setAllowedOverRoaming(false)
                     .setTitle(fileName)
                     .setMimeType("image/jpeg/png")
-                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
+                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN)
                     .setDestinationInExternalFilesDir(context, DIR_NAME, fileName)
 
                 downloadManager.enqueue(request)
