@@ -2,9 +2,9 @@ package ba.ahavic.artistfy.ui.main.searchartist
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import ba.ahavic.artistfy.data.artist.Artist
 import ba.ahavic.artistfy.data.artist.ArtistRepository
 import ba.ahavic.artistfy.ui.base.viewmodel.BaseViewModel
+import ba.ahavic.artistfy.ui.data.Artist
 import javax.inject.Inject
 
 class SearchArtistViewModel @Inject constructor(private val artistRepository: ArtistRepository) :

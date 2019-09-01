@@ -1,28 +1,9 @@
 package ba.ahavic.artistfy.data.album
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import ba.ahavic.artistfy.data.artist.Artist
+import ba.ahavic.artistfy.ui.data.Artist
+import ba.ahavic.artistfy.ui.data.Track
+import ba.ahavic.artistfy.ui.data.Wiki
 import com.google.gson.annotations.SerializedName
-import java.io.Serializable
-
-@Entity
-data class Album(
-    @PrimaryKey val mbid: String,
-    val name: String,
-    val url: String,
-    val artist: Artist? = null,
-    val image: String?,
-    val wiki: Wiki? = null,
-    val tracks: List<Track>? = null,
-    val cached: Boolean = false
-) : Serializable
-
-data class Track(val name: String, val url: String, val duration: String)
-
-data class Image(@SerializedName("#text") val url: String, val size: String)
-
-data class Wiki(val published: String, val summary: String, val content: String): Serializable
 
 data class AlbumDTO(
     val mbid: String?,
@@ -45,6 +26,8 @@ data class AlbumInfoDTO(
     val tracks: TracksDTO?,
     val wiki: Wiki? = null
 )
+
+data class Image(@SerializedName("#text") val url: String, val size: String)
 
 data class AlbumData(val album: AlbumInfoDTO)
 

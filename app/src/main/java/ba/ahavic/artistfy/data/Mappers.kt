@@ -1,10 +1,10 @@
 package ba.ahavic.artistfy.data
 
-import ba.ahavic.artistfy.data.album.Album
 import ba.ahavic.artistfy.data.album.AlbumDTO
 import ba.ahavic.artistfy.data.album.AlbumInfoDTO
-import ba.ahavic.artistfy.data.artist.Artist
 import ba.ahavic.artistfy.data.artist.ArtistDTO
+import ba.ahavic.artistfy.ui.data.Album
+import ba.ahavic.artistfy.ui.data.Artist
 
 object Mappers {
 
@@ -39,6 +39,7 @@ object Mappers {
             mbid = it.mbid ?: it.name,
             name = it.name,
             url = it.url,
+            artist = Artist(it.artist, it.artist, it.artist),
             image = it.image?.find { image ->
                 image.size.equals("large") || image.size.equals("medium")
             }?.url!!,

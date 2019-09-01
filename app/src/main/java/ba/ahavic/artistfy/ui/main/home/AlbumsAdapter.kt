@@ -6,9 +6,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import ba.ahavic.artistfy.R
-import ba.ahavic.artistfy.data.album.Album
 import ba.ahavic.artistfy.databinding.ItemAlbumsBinding
-import com.squareup.picasso.Picasso
+import ba.ahavic.artistfy.ui.data.Album
 
 typealias OnAlbumSelectedListener = (Album) -> Unit
 

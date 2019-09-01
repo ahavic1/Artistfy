@@ -6,7 +6,7 @@
     <data>
         <variable
             name="album"
-            type="ba.ahavic.artistfy.data.album.Album" />
+            type="ba.ahavic.artistfy.ui.data.Album" />
     </data>
 
     <androidx.cardview.widget.CardView

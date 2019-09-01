@@ -7,7 +7,7 @@
 
         <variable
             name="artist"
-            type="ba.ahavic.artistfy.data.artist.Artist" />
+            type="ba.ahavic.artistfy.ui.data.Artist" />
     </data>
 
     <androidx.cardview.widget.CardView

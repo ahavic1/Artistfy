@@ -2,9 +2,9 @@ package ba.ahavic.artistfy.ui.main.topalbums
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import ba.ahavic.artistfy.data.album.Album
 import ba.ahavic.artistfy.data.artist.ArtistRepository
 import ba.ahavic.artistfy.ui.base.viewmodel.BaseViewModel
+import ba.ahavic.artistfy.ui.data.Album
 import javax.inject.Inject
 
 class TopAlbumsViewModel @Inject constructor(

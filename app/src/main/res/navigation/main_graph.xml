@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_album_details">
         <argument
             android:name="album"
-            app:argType="ba.ahavic.artistfy.data.album.Album" />
+            app:argType="ba.ahavic.artistfy.ui.data.Album" />
     </fragment>
     <fragment
         android:id="@+id/searchArtistFragment"

@@ -2,16 +2,16 @@ package ba.ahavic.artistfy.data.base.db
 
 import androidx.room.TypeConverter
 import ba.ahavic.artistfy.data.album.Image
-import ba.ahavic.artistfy.data.album.Track
-import ba.ahavic.artistfy.data.album.Wiki
-import ba.ahavic.artistfy.data.artist.Artist
+import ba.ahavic.artistfy.ui.data.Artist
+import ba.ahavic.artistfy.ui.data.Track
+import ba.ahavic.artistfy.ui.data.Wiki
 import com.google.gson.Gson
 import java.lang.reflect.Type
 
 class DataTypeConverters {
 
     @TypeConverter
-    fun artistToJson(artist: Artist?): String? = toJson(artist)
+    fun artistToJson(artist: Artist): String? = toJson(artist)
 
     @TypeConverter
     fun artistFromJson(artist: String): Artist? = fromJson<Artist>(artist)

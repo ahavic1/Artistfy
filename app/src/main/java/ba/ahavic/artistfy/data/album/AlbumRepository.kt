@@ -6,11 +6,11 @@ import ba.ahavic.artistfy.data.Mappers
 import ba.ahavic.artistfy.data.base.BaseRepository
 import ba.ahavic.artistfy.data.base.asBody
 import ba.ahavic.artistfy.data.base.db.BaseDao
-import ba.ahavic.artistfy.data.base.network.ApiError
 import ba.ahavic.artistfy.data.base.network.ImageDownloader
 import ba.ahavic.artistfy.ui.base.AppError
 import ba.ahavic.artistfy.ui.base.AppException
 import ba.ahavic.artistfy.ui.base.ReasonOfError
+import ba.ahavic.artistfy.ui.data.Album
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.withContext
 import retrofit2.Response
@@ -40,9 +40,12 @@ class AlbumRepositoryImpl @Inject constructor(
         }
 
         return@withContext albumApi.getAlbumAsync(
-            artistName = album.artist?.name!!,
+            artistName = album.artist.name,
             albumName = album.name
-        ).await().asBody(errorMapper).album.let { Mappers.mapAlbumInfo(it) }
+        ).await()
+            .asBody(errorMapper)
+            .album
+            .let { Mappers.mapAlbumInfo(it).copy(artist = album.artist) }
     }
 
     override suspend fun saveAlbum(album: Album): Boolean = withContext(dispachers.IO) {

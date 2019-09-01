@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ba.ahavic.artistfy.R
 import ba.ahavic.artistfy.asMutableLiveData
-import ba.ahavic.artistfy.data.album.Album
 import ba.ahavic.artistfy.data.album.AlbumRepository
 import ba.ahavic.artistfy.ui.base.viewmodel.BaseError
 import ba.ahavic.artistfy.ui.base.viewmodel.BaseViewModel
+import ba.ahavic.artistfy.ui.data.Album
 import javax.inject.Inject
 
 class MyAlbumsViewModel @Inject constructor(

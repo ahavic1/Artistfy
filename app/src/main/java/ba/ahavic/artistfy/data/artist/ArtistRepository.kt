@@ -2,11 +2,12 @@ package ba.ahavic.artistfy.data.artist
 
 import ba.ahavic.artistfy.BuildConfig
 import ba.ahavic.artistfy.data.Mappers
-import ba.ahavic.artistfy.data.album.Album
 import ba.ahavic.artistfy.data.album.TopAlbumData
 import ba.ahavic.artistfy.data.base.BaseRepository
 import ba.ahavic.artistfy.data.base.asBody
 import ba.ahavic.artistfy.ui.base.AppException
+import ba.ahavic.artistfy.ui.data.Album
+import ba.ahavic.artistfy.ui.data.Artist
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.GET
