@@ -1,6 +1,9 @@
 package ba.ahavic.artistfy.ui.base.view
 
+import android.app.Activity
+import android.content.Context
 import android.content.DialogInterface
+import android.view.inputmethod.InputMethodManager
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -46,6 +49,11 @@ abstract class BaseBoundFragment<ViewModelType : BaseViewModel, ViewDataBindingT
         setDefaultErrorObserver()
     }
 
+    override fun onResume() {
+        super.onResume()
+        hideKeyboard()
+    }
+
     protected open fun setDefaultErrorObserver() {
         viewModel.error.observe(viewLifecycleOwner, Observer {
             if (it !is BaseError.FeatureError)
@@ -66,3 +74,11 @@ abstract class BaseBoundFragment<ViewModelType : BaseViewModel, ViewDataBindingT
 }
 
 fun Fragment.getNavController(): NavController = NavHostFragment.findNavController(this)
+
+fun Fragment.hideKeyboard() {
+    try {
+        val imm = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow((context as Activity).window.currentFocus!!.windowToken, 0)
+    } catch (e: NullPointerException) {
+    }
+}
