@@ -19,10 +19,7 @@ class AlbumDetailsViewModel @Inject constructor(private val albumRepository: Alb
     fun actionSaveToMyAlbums() {
         launch {
             isLoading(true)
-            _album.value = album.value?.let { album ->
-                albumRepository.saveAlbum(album)
-                album.copy(cached = true)
-            }
+            _album.value = albumRepository.saveAlbum(album.value!!)
             isLoading(false)
         }
     }

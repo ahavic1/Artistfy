@@ -1,12 +1,13 @@
 <resources>
     <string name="app_name">Artistfy</string>
 
+    <string name="all_error_default_title">Error</string>
+    <string name="all_error_default_description">Something went wrong.</string>
     <string name="albums_no_albums_error">You have no saved albums.</string>
     <string name="all_data_loading_title">Loading data</string>
 
-
     <string name="all_placeholder_lorem_ispum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
-    <string name="search_artist_btn_search">Search Artist</string>
+    <string name="search_artist_btn_search">Search</string>
     <string name="album_details_remove">Remove from My Albums</string>
     <string name="album_details_save">Save to My Albums</string>
     <string name="my_albums_toolbar_title">My Albums</string>
@@ -14,5 +15,6 @@
     <string name="search_artist_toolbar_title">Search artists</string>
     <string name="top_albums_toolbar_title">Top Albums</string>
     <string name="menu_search">Search</string>
+    <string name="my_albums_no_albums">No Saved Albums</string>
 
 </resources>

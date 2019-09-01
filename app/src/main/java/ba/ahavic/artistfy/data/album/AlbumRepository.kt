@@ -6,7 +6,11 @@ import ba.ahavic.artistfy.data.Mappers
 import ba.ahavic.artistfy.data.base.BaseRepository
 import ba.ahavic.artistfy.data.base.asBody
 import ba.ahavic.artistfy.data.base.db.BaseDao
+import ba.ahavic.artistfy.data.base.network.ApiError
 import ba.ahavic.artistfy.data.base.network.ImageDownloader
+import ba.ahavic.artistfy.ui.base.AppError
+import ba.ahavic.artistfy.ui.base.AppException
+import ba.ahavic.artistfy.ui.base.ReasonOfError
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.withContext
 import retrofit2.Response
@@ -16,7 +20,7 @@ import javax.inject.Inject
 interface AlbumRepository {
     suspend fun getAlbums(): List<Album>
     suspend fun getAlbum(album: Album): Album
-    suspend fun saveAlbum(album: Album): Boolean
+    suspend fun saveAlbum(album: Album): Album
     suspend fun deleteAlbum(album: Album): Boolean
 }
 
@@ -28,25 +32,27 @@ class AlbumRepositoryImpl @Inject constructor(
 
     override suspend fun getAlbums(): List<Album> = albumDao.getAlbums()
 
-    @Suppress("USELESS_ELVIS")
+    @Suppress("SENSELESS_COMPARISON")
     override suspend fun getAlbum(album: Album): Album = withContext(dispachers.IO) {
-        albumDao.getAlbumById(album.mbid) ?: albumApi.getAlbumInfoAsync(
+        val localCopy = albumDao.getAlbumById(album.mbid)
+        if (localCopy != null) {
+            return@withContext localCopy
+        }
+
+        return@withContext albumApi.getAlbumAsync(
             artistName = album.artist?.name!!,
             albumName = album.name
-        ).await()
-            .asBody(errorMapper)
-            .album.let { Mappers.mapAlbumInfo(it) }
+        ).await().asBody(errorMapper).album.let { Mappers.mapAlbumInfo(it) }
     }
 
-    override suspend fun saveAlbum(album: Album): Boolean = withContext(dispachers.IO) {
+    override suspend fun saveAlbum(album: Album): Album = withContext(dispachers.IO) {
         try {
-            album.image?.let {
-                val localImagePath = imageDownloader.downloadImage(it)
-                albumDao.save(album.copy(image = localImagePath, cached = true))
-            } ?: albumDao.save(album)
-            true
+            val imagePath = album.image?.let { imageDownloader.downloadImage(it) }
+            val tmp = album.copy(image = imagePath, cached = true)
+            albumDao.save(tmp)
+            return@withContext tmp
         } catch (ex: Exception) {
-            false
+            throw AppException(AppError(ReasonOfError.DatabaseTransactionFailed))
         }
     }
 
@@ -76,7 +82,7 @@ interface AlbumDao : BaseDao<Album> {
 
 interface AlbumApi {
     @GET("2.0/")
-    fun getAlbumInfoAsync(
+    fun getAlbumAsync(
         @retrofit2.http.Query("method") method: String = "album.getinfo",
         @retrofit2.http.Query("artist") artistName: String,
         @retrofit2.http.Query("album") albumName: String

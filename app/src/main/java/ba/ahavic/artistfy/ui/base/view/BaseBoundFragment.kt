@@ -1,5 +1,6 @@
 package ba.ahavic.artistfy.ui.base.view
 
+import android.content.DialogInterface
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -8,6 +9,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.fragment.NavHostFragment
+import ba.ahavic.artistfy.showDialog
+import ba.ahavic.artistfy.ui.base.viewmodel.BaseError
 import ba.ahavic.artistfy.ui.base.viewmodel.BaseViewModel
 import ba.ahavic.artistfy.ui.base.viewmodel.NavigationAction
 import javax.inject.Inject
@@ -40,6 +43,16 @@ abstract class BaseBoundFragment<ViewModelType : BaseViewModel, ViewDataBindingT
 
         bindToViewModel()
         setNavigationObserver()
+        setDefaultErrorObserver()
+    }
+
+    protected open fun setDefaultErrorObserver() {
+        viewModel.error.observe(viewLifecycleOwner, Observer {
+            if (it !is BaseError.FeatureError)
+                context!!.showDialog(it.title, it.description, DialogInterface.OnDismissListener { dialog ->
+                    dialog.dismiss()
+                })
+        })
     }
 
     private fun setNavigationObserver() {

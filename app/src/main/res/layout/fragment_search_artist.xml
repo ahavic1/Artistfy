@@ -27,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@={viewModel.searchText}"
+                android:paddingTop="18dp"
                 android:layout_toStartOf="@+id/button_search_artist"
                 android:paddingEnd="@dimen/margin_normal"
                 android:paddingStart="@dimen/margin_normal"/>

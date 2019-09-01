@@ -3,11 +3,14 @@ package ba.ahavic.artistfy.ui.base.viewmodel
 import android.os.Bundle
 import androidx.lifecycle.*
 import androidx.navigation.NavDirections
-import ba.ahavic.artistfy.data.base.AppException
+import ba.ahavic.artistfy.ui.base.AppError
+import ba.ahavic.artistfy.ui.base.AppException
+import ba.ahavic.artistfy.ui.base.ReasonOfError
 import ba.ahavic.artistfy.ui.base.SingleLiveEvent
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import kotlin.coroutines.coroutineContext
 
 abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
@@ -28,8 +31,8 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
      * [_coroutineExceptionHandler] context element is used as generic catch block of coroutine.
      */
     private var _coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
-        if (exception is AppException) {// handle
-        }
+        isLoading(false)
+        if (exception is AppException) defaultErrorHandler(exception.appError)
         else throw exception
     }
 
@@ -42,6 +45,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     }
 
     protected fun setError(error: BaseError) {
+        // log error
         _error.value = error
     }
 
@@ -57,13 +61,24 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
         _navigationAction.value = NavigationAction.To(navDirections)
     }
 
+    /**
+     * Override to provide specific feature error handling but don't forget to call super!
+     */
+    protected open fun defaultErrorHandler(appError: AppError) {
+        _error.value = when (appError.reasonOfError) {
+            ReasonOfError.ServerError -> ServerError
+            ReasonOfError.UnKnownHost -> DefaultError
+            else -> DefaultError
+        }
+    }
+
     protected fun launch(block: suspend CoroutineScope.() -> Unit) {
         try {
             viewModelScope.launch(_coroutineExceptionHandler) {
                 block()
             }
         } catch (exception: Exception) {
-            throw exception
+           throw exception
         } finally {
             isLoading(false)
         }

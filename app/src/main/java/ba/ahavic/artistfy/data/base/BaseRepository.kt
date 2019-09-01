@@ -1,8 +1,8 @@
 package ba.ahavic.artistfy.data.base
 
-import ba.ahavic.artistfy.data.base.network.ApiError
 import ba.ahavic.artistfy.data.base.network.DefaultErrorMapper
 import ba.ahavic.artistfy.data.base.network.ErrorMapper
+import ba.ahavic.artistfy.ui.base.AppException
 import kotlinx.coroutines.Dispatchers
 import retrofit2.Response
 import javax.inject.Inject
@@ -26,5 +26,3 @@ inline fun <reified T> Response<T>.asBody(errorMapper: ErrorMapper): T {
     }
     throw AppException(errorMapper.parseError(this))
 }
-
-data class AppException(val apiError: ApiError): Exception()

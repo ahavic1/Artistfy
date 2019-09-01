@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="ba.ahavic.artistfy.ui.main.home.MyAlbumsViewModel" />
@@ -14,7 +15,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/linear_loading_container"
+            android:id="@+id/container_loading"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
@@ -44,6 +45,21 @@
                 tools:text="@string/all_data_loading_title" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/text_no_albums"
+            style="@style/Label.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="@string/my_albums_no_albums"
+            app:visible="@{viewModel.errorLayoutVisibility}"
+            app:layout_constraintVertical_bias="0.3"
+            app:layout_constraintBottom_toBottomOf="@+id/recycler_albums"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/all_data_loading_title" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_albums"
             android:layout_width="match_parent"
@@ -56,9 +72,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:visible="@{!viewModel.isLoading}"
-            tools:listitem="@layout/item_albums"
-            tools:itemCount="10" />
+            app:visible="@{!viewModel.isLoading &amp;&amp; !viewModel.errorLayoutVisibility}"
+            tools:itemCount="10"
+            tools:listitem="@layout/item_albums" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

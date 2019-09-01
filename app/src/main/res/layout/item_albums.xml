@@ -26,8 +26,8 @@
 
             <ImageView
                 android:id="@+id/image_album_graphic"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:scaleType="fitXY"
                 app:src="@{album.image}"
                 app:layout_constraintStart_toStartOf="parent"
