@@ -8,7 +8,8 @@ enum class ReasonOfError {
     InvalidAPIKey,
     InvalidRequestMethod,
     GenericError,
-    DatabaseSaveFailed
+    DatabaseSaveFailed,
+    InvalidParameters
 }
 
 data class AppException(val appError: AppError): Exception()

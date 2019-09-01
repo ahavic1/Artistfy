@@ -60,6 +60,11 @@ abstract class BaseBoundFragment<ViewModelType : BaseViewModel, ViewDataBindingT
                 context!!.showDialog(it.title, it.description, DialogInterface.OnDismissListener { dialog ->
                     dialog.dismiss()
                 })
+            else {
+                context!!.showDialog(it.title, it.description, DialogInterface.OnDismissListener { dialog ->
+                    dialog.dismiss()
+                })
+            }
         })
     }
 

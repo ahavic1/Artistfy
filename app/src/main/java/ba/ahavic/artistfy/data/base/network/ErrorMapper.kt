@@ -56,6 +56,7 @@ data class ApiError(val code: Int, val error: Int, val message: String) {
     private fun getApiError(error: Int, message: String): AppError {
         return when (error) {
             3 -> AppError(ReasonOfError.InvalidRequestMethod)
+            6 -> AppError(ReasonOfError.InvalidParameters)
             10 -> AppError(ReasonOfError.InvalidAPIKey)
             else -> AppError(ReasonOfError.GenericError)
         }

@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Artistfy</string>
 
+    <!--suppress CheckTagEmptyBody -->
+    <string name="empty" translatable="false"></string>
     <string name="all_error_default_title">Error</string>
     <string name="all_error_default_description">Something went wrong.</string>
     <string name="albums_no_albums_error">You have no saved albums.</string>
@@ -17,5 +19,6 @@
     <string name="menu_search">Search</string>
     <string name="my_albums_no_albums">No Saved Albums</string>
     <string name="album_details_save_failed">Album could not be saved</string>
+    <string name="search_artist_error_invalid_query">Invalid search query</string>
 
 </resources>
