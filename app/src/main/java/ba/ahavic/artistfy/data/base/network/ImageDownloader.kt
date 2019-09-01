@@ -8,19 +8,20 @@ import android.net.Uri
 import android.os.Environment
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import ba.ahavic.artistfy.ui.base.AppError
+import ba.ahavic.artistfy.ui.base.AppException
+import ba.ahavic.artistfy.ui.base.ReasonOfError
 import java.io.File
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class ImageDownloader @Inject constructor(private val context: Context) {
     fun downloadImage(imageUrl: String): String? {
         val writeExternalStoragePermission =
             ContextCompat.checkSelfPermission(context, WRITE_EXTERNAL_STORAGE)
         if (writeExternalStoragePermission != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(context,
-                "Give storage Permissions to the app in order to save album",
-                Toast.LENGTH_LONG
-            ).show()
-            return null
+            return imageUrl
         } else {
             context.getExternalFilesDir(DIR_NAME)?.let { directory ->
                 val fileName = imageUrl.substringAfterLast("/")

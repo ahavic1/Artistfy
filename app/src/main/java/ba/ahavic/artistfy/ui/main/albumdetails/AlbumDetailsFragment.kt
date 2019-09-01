@@ -1,5 +1,6 @@
-package ba.ahavic.artistfy.ui.main.home
+package ba.ahavic.artistfy.ui.main.albumdetails
 
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import ba.ahavic.artistfy.BR
 import ba.ahavic.artistfy.R
@@ -12,6 +13,8 @@ import dagger.multibindings.IntoMap
 
 class AlbumDetailsFragment : BaseBoundFragment<AlbumDetailsViewModel, FragmentAlbumDetailsBinding>() {
 
+    private val tracksAdapter: TracksAdapter by lazy { TracksAdapter() }
+
     override val layoutId: Int
         get() = R.layout.fragment_album_details
     override val viewModelNameRId: Int
@@ -20,6 +23,11 @@ class AlbumDetailsFragment : BaseBoundFragment<AlbumDetailsViewModel, FragmentAl
         get() = AlbumDetailsViewModel::class.java
 
     override fun bindToViewModel() {
+        viewDataBinding.recyclerTracks.adapter = tracksAdapter
+
+        viewModel.album.observe(viewLifecycleOwner, Observer { album ->
+            album.tracks?.let { tracksAdapter.setData(album.tracks) }
+        })
     }
 }
 

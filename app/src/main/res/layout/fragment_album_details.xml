@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="ba.ahavic.artistfy.ui.main.home.AlbumDetailsViewModel" />
+            type="ba.ahavic.artistfy.ui.main.albumdetails.AlbumDetailsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,6 +52,7 @@
             android:id="@+id/text_summary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxHeight="150dp"
             android:layout_marginTop="@dimen/margin_normal"
             android:text="@{viewModel.album.wiki.summary}"
             app:layout_constraintEnd_toEndOf="parent"
@@ -59,10 +60,30 @@
             app:layout_constraintTop_toBottomOf="@+id/image_album_graphic"
             tools:text="@string/all_placeholder_lorem_ispum" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_tracks"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginBottom="60dp"
+            android:background="@color/white"
+            android:fadingEdge="vertical"
+            android:fadingEdgeLength="@dimen/margin_tiny"
+            android:requiresFadingEdge="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_summary"
+            app:visible="@{!viewModel.isLoading}"
+            tools:itemCount="5"
+            tools:listitem="@layout/item_track" />
+
         <Button
             android:id="@+id/button_delete_from_my_albums"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginBottom="@dimen/margin_tiny"
             android:text="@string/album_details_remove"
             android:onClick="@{() -> viewModel.actionRemoveFromMyAlbums()}"
             app:visible="@{viewModel.album.cached}"
@@ -74,6 +95,7 @@
             android:id="@+id/button_save_to_my_albums"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginBottom="@dimen/margin_tiny"
             android:onClick="@{() -> viewModel.actionSaveToMyAlbums()}"
             android:text="@string/album_details_save"
             app:visible="@{!viewModel.album.cached}"

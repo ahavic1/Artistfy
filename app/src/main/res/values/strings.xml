@@ -20,5 +20,8 @@
     <string name="my_albums_no_albums">No Saved Albums</string>
     <string name="album_details_save_failed">Album could not be saved</string>
     <string name="search_artist_error_invalid_query">Invalid search query</string>
+    <string name="item_track_name_label">Track name:</string>
+    <string name="item_track_duration_label">Duration:</string>
+    <string name="item_track_url_label">Url:</string>
 
 </resources>

@@ -14,7 +14,7 @@ import kotlin.coroutines.coroutineContext
 
 abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
-    private val _error = MutableLiveData<BaseError>()
+    private val _error = SingleLiveEvent<BaseError>()
     val error: LiveData<BaseError>
         get() = _error
 

@@ -3,8 +3,8 @@ package ba.ahavic.artistfy.ui.base.di.module
 import ba.ahavic.artistfy.ui.base.di.FragmentScope
 import ba.ahavic.artistfy.ui.main.searchartist.SearchArtistFragment
 import ba.ahavic.artistfy.ui.main.searchartist.SearchArtistModule
-import ba.ahavic.artistfy.ui.main.home.AlbumDetailsFragment
-import ba.ahavic.artistfy.ui.main.home.AlbumDetailsModule
+import ba.ahavic.artistfy.ui.main.albumdetails.AlbumDetailsFragment
+import ba.ahavic.artistfy.ui.main.albumdetails.AlbumDetailsModule
 import ba.ahavic.artistfy.ui.main.home.MyAlbumsFragment
 import ba.ahavic.artistfy.ui.main.home.AlbumsModule
 import ba.ahavic.artistfy.ui.main.topalbums.TopAlbumsFragment

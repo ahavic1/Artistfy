@@ -9,7 +9,8 @@ enum class ReasonOfError {
     InvalidRequestMethod,
     GenericError,
     DatabaseSaveFailed,
-    InvalidParameters
+    InvalidParameters,
+    MissingStoragePermissionsError
 }
 
 data class AppException(val appError: AppError): Exception()

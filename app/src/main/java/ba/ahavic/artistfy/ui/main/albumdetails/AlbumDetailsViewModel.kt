@@ -1,4 +1,4 @@
-package ba.ahavic.artistfy.ui.main.home
+package ba.ahavic.artistfy.ui.main.albumdetails
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

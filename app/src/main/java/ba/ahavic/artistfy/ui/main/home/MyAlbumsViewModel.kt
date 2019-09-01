@@ -48,8 +48,9 @@ class MyAlbumsViewModel @Inject constructor(
     }
 
     private fun renderAlbums(albums: List<Album>) {
+        errorLayoutVisibility.value = false
         _albums.value = albums
     }
 }
 
-object NoAlbumsError: BaseError.FeatureError(R.string.albums_no_albums_error, 0)
+object NoAlbumsError: BaseError.FeatureError(R.string.albums_no_albums_error)

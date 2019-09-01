@@ -6,6 +6,7 @@ import ba.ahavic.artistfy.ui.data.Artist
 import ba.ahavic.artistfy.ui.data.Track
 import ba.ahavic.artistfy.ui.data.Wiki
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 
 class DataTypeConverters {
@@ -32,7 +33,8 @@ class DataTypeConverters {
     fun tracksToJson(track: List<Track>?): String? = toJson(track)
 
     @TypeConverter
-    fun tracksFromJson(track: String): List<Track> = fromJson<List<Track>>(track)
+    fun tracksFromJson(track: String): List<Track>
+        = fromJson(track, object : TypeToken<List<Track>>() {}.type)
 
     private inline fun <reified T> fromJson(value: String, type: Type): List<T> {
         return Gson().fromJson(value, type)

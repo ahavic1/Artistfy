@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/albumDetailsFragment"
-        android:name="ba.ahavic.artistfy.ui.main.home.AlbumDetailsFragment"
+        android:name="ba.ahavic.artistfy.ui.main.albumdetails.AlbumDetailsFragment"
         android:label="@string/album_details_toolbar_title"
         tools:layout="@layout/fragment_album_details">
         <argument
