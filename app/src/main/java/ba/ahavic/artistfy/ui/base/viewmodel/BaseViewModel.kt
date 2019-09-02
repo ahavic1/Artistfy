@@ -80,7 +80,9 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
         } catch (exception: Exception) {
            throw exception
         } finally {
-            isLoading(false)
+            if (isLoading.value != false) {
+                isLoading(false)
+            }
         }
     }
 }

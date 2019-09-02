@@ -30,10 +30,12 @@ class AlbumDetailsViewModel @Inject constructor(private val albumRepository: Alb
     fun actionSaveToMyAlbums() {
         launch {
             isLoading(true)
-            if (albumRepository.saveAlbum(album.value!!)) {
-                _album.value = _album.value?.copy(
-                    cached = true
-                )
+            album.value?.let { album ->
+                if (albumRepository.saveAlbum(album)) {
+                    _album.value = album.copy(
+                        cached = true
+                    )
+                }
             }
             isLoading(false)
         }

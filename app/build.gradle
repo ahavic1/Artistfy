@@ -97,6 +97,7 @@ dependencies {
     // Picasso
     implementation "com.squareup.picasso:picasso:$picassoVersion"
 
+    // Testing
     testImplementation "junit:junit:$junitVersion"
     testImplementation "org.mockito:mockito-core:$mockitoCoreVersion"
     testImplementation "android.arch.core:core-testing:$coreTestingVersion"

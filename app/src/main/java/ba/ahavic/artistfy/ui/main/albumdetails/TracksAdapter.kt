@@ -29,7 +29,7 @@ class TracksAdapter : RecyclerView.Adapter<TrackVH>() {
         holder.bind(items[position])
     }
 
-    override fun getItemId(position: Int): Long = items[position].hashCode().toLong()
+    override fun getItemId(position: Int): Long = items[position].name.hashCode().toLong()
 
     fun setData(item: List<Track>) {
         items.clear()

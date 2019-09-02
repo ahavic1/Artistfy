@@ -54,7 +54,8 @@ class MyAlbumsViewModelTest : BaseViewModelTest() {
 
         verify(errorObserver, times(1)).onChanged(NoAlbumsError)
         verify(errorLayoutVisibilityObserver, times(1)).onChanged(true)
-        verify(loadingObserver, times(2)).onChanged(false)
+        verify(loadingObserver, times(1)).onChanged(false)
+        verify(loadingObserver, times(1)).onChanged(true)
     }
 
     @Test
@@ -66,7 +67,8 @@ class MyAlbumsViewModelTest : BaseViewModelTest() {
         lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
 
         verify(albumsObserver, times(1)).onChanged(albums)
-        verify(loadingObserver, times(2)).onChanged(false)
+        verify(loadingObserver, times(1)).onChanged(false)
+        verify(loadingObserver, times(1)).onChanged(true)
     }
 
     @Test

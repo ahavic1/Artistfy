@@ -21,7 +21,7 @@ class SearchArtistViewModel @Inject constructor(private val artistRepository: Ar
 
     override fun defaultErrorHandler(appError: AppError) {
         when (appError.reasonOfError) {
-            ReasonOfError.InvalidParameters -> setError(InvalidSearchQuery)
+            ReasonOfError.InvalidParameters -> setError(InvalidSearchQueryError)
             else -> super.defaultErrorHandler(appError)
         }
     }
@@ -41,7 +41,7 @@ class SearchArtistViewModel @Inject constructor(private val artistRepository: Ar
     }
 }
 
-object InvalidSearchQuery : BaseError.FeatureError(
+object InvalidSearchQueryError : BaseError.FeatureError(
     R.string.all_error_default_title,
     R.string.search_artist_error_invalid_query
 )

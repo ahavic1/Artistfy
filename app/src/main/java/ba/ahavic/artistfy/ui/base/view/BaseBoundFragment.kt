@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import androidx.navigation.fragment.NavHostFragment
 import ba.ahavic.artistfy.showDialog
 import ba.ahavic.artistfy.ui.base.viewmodel.BaseError
@@ -79,6 +78,5 @@ fun Fragment.hideKeyboard() {
     try {
         val imm = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow((context as Activity).window.currentFocus!!.windowToken, 0)
-    } catch (e: NullPointerException) {
-    }
+    } catch (e: NullPointerException) { }
 }

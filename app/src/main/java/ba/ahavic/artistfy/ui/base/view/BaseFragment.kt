@@ -7,9 +7,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
 import dagger.android.support.DaggerFragment
-
 
 /**
  * Base fragment for all fragments.
@@ -35,7 +33,6 @@ abstract class BaseFragment<ViewDataBindingType: ViewDataBinding> : DaggerFragme
         super.onViewCreated(view, savedInstanceState)
         postInflate(viewDataBinding)
     }
-
 
     /**
      * Invoked before view inflation.

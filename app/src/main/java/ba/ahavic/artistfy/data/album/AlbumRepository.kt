@@ -39,13 +39,17 @@ class AlbumRepositoryImpl @Inject constructor(
             return@withContext localCopy
         }
 
-        return@withContext albumApi.getAlbumAsync(
-            artistName = album.artist.name,
-            albumName = album.name
-        ).await()
-            .asBody(errorMapper)
-            .album
-            .let { Mappers.mapAlbumInfo(it).copy(artist = album.artist) }
+        try {
+            return@withContext albumApi.getAlbumAsync(
+                artistName = album.artist.name,
+                albumName = album.name
+            ).await()
+                .asBody(errorMapper)
+                .album
+                .let { Mappers.mapAlbumInfo(it).copy(artist = album.artist) }
+        } catch (ex: Exception) {
+            throw AppException(errorMapper.parseError(ex))
+        }
     }
 
     override suspend fun saveAlbum(album: Album): Boolean = withContext(dispachers.IO) {
