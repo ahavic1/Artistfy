@@ -67,7 +67,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     protected open fun defaultErrorHandler(appError: AppError) {
         _error.value = when (appError.reasonOfError) {
             ReasonOfError.ServerError -> ServerError
-            ReasonOfError.UnKnownHost -> DefaultError
+            ReasonOfError.UnKnownHost -> UnknownHostError
             else -> DefaultError
         }
     }

@@ -23,5 +23,6 @@
     <string name="item_track_name_label">Track name:</string>
     <string name="item_track_duration_label">Duration:</string>
     <string name="item_track_url_label">Url:</string>
+    <string name="all_error_unknown_host_description">Uknown host. Please check if there is internet connection.</string>
 
 </resources>

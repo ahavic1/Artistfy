@@ -8,3 +8,4 @@ sealed class BaseError(val title: Int, val description: Int){
 
 object DefaultError: BaseError(R.string.all_error_default_title, R.string.all_error_default_description)
 object ServerError: BaseError(R.string.all_error_default_title, R.string.all_error_default_description)
+object UnknownHostError: BaseError(R.string.all_error_default_title, R.string.all_error_unknown_host_description)
