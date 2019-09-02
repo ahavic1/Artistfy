@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 interface AlbumRepository {
     suspend fun getAlbums(): List<Album>
-    suspend fun getAlbum(album: Album): Album
+    suspend fun getAlbumInfo(album: Album): Album
     suspend fun saveAlbum(album: Album): Boolean
     suspend fun deleteAlbum(album: Album): Boolean
 }
@@ -33,7 +33,7 @@ class AlbumRepositoryImpl @Inject constructor(
     override suspend fun getAlbums(): List<Album> = albumDao.getAlbums()
 
     @Suppress("SENSELESS_COMPARISON")
-    override suspend fun getAlbum(album: Album): Album = withContext(dispachers.IO) {
+    override suspend fun getAlbumInfo(album: Album): Album = withContext(dispachers.IO) {
         val localCopy = albumDao.getAlbumById(album.mbid)
         if (localCopy != null) {
             return@withContext localCopy

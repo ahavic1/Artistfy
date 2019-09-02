@@ -23,6 +23,9 @@ import org.mockito.Mockito.*
 @ExperimentalCoroutinesApi
 class MyAlbumsViewModelTest : BaseViewModelTest() {
 
+    @InjectMocks
+    private lateinit var viewModel: MyAlbumsViewModel
+
     @Mock
     private lateinit var albumsRepository: AlbumRepository
 
@@ -32,12 +35,6 @@ class MyAlbumsViewModelTest : BaseViewModelTest() {
 
     @Mock
     lateinit var errorLayoutVisibilityObserver: Observer<Boolean>
-
-    @Mock
-    lateinit var loadingObserver: Observer<Boolean>
-
-    @InjectMocks
-    private lateinit var viewModel: MyAlbumsViewModel
 
     @Before
     override fun setup() {

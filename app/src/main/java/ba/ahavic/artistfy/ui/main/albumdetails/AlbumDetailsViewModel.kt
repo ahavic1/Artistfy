@@ -53,7 +53,7 @@ class AlbumDetailsViewModel @Inject constructor(private val albumRepository: Alb
     private fun getAlbumInfo(album: Album) {
         launch {
             isLoading(true)
-            _album.value = albumRepository.getAlbum(album)
+            _album.value = albumRepository.getAlbumInfo(album)
             isLoading(false)
         }
     }

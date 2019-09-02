@@ -18,6 +18,10 @@ import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
 abstract class BaseViewModelTest {
+
+    /**
+     * This rule forces LiveData updates to happen on calling thread
+     */
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
@@ -30,6 +34,9 @@ abstract class BaseViewModelTest {
 
     @Mock
     lateinit var navigationObserver: Observer<NavigationAction>
+
+    @Mock
+    lateinit var loadingObserver: Observer<Boolean>
 
     @Before
     open fun setup() {
