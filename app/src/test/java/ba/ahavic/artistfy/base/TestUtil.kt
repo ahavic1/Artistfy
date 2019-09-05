@@ -24,12 +24,13 @@ object TestUtil {
     fun createArtists(): List<Artist> = loadJson<List<Artist>>(artistsMockFile)
 
     private inline fun <reified T> loadJson(file: String): T {
-        val br = BufferedReader(InputStreamReader(FileInputStream(mocksPath + file)))
         val sb = StringBuilder()
-        var line = br.readLine()
-        while (line != null) {
-            sb.append(line)
-            line = br.readLine()
+        BufferedReader(InputStreamReader(FileInputStream(mocksPath + file))).use {
+            var line = it.readLine()
+            while (line != null) {
+                sb.append(line)
+                line = it.readLine()
+            }
         }
         return Gson().fromJson(sb.toString(), T::class.java)
     }
